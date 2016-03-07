@@ -28,26 +28,75 @@
             require_once("includes/connection.php"); 
             include_once("includes/template/nav.php");
         ?>
-        <div class="content contentContainer">
+        <div class="content contentContainer" id="topContainer">
             <div class="row">      
-                <div class="col-md-6 col-md-offset-3 marginTop">
+                <div class="col-md-8 col-md-offset-2 marginTop" id="bgColor">
                     <?php
-                        $data = "SELECT * FROM matchFinder";
+                        $data = "SELECT * FROM matchFinder ORDER BY ID DESC";
                         $result = mysqli_query($connection, $data);
                      ?>
             
-                    <h1>Match Finder</h1>
+                    <h1 class="titleText">Match Finder</h1>                   
+                    <button class="btn btn-success" data-toggle="modal" data-target="#myModal">Post Match</button>
+                    <div class="modal" id="myModal">
+                        <div class="modal-dialogue modal-sm">       
+                            <div class="modal-content">          
+                                <div class="modal-header">            
+                                    <button class="close" data-dismiss="modal">X</button>          
+                                    <h4 class="modal-title">Post a Match</h4>          
+                                </div>          
+                                <div class="modal-body">            
+                                    <p>Gamertag:</p> <br />
+                                    <p>Game:</p> <br />
+                                    <p>Descrition:</p> <br />
+                                </div>          
+                                <div class="modal-footer">            
+                                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-success">Post Match</button>
+                                </div>                    
+                            </div>        
+                        </div>      
+                    </div>               
+                    
+                    
+                    <div class="btn-group">
+                        <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">
+                            Filter Game
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                        <!-- dropdown menu links -->
+                            <li><a href="#">Black Ops III</a></li>
+                            <li><a href="#">CS:GO</a></li>
+                        </ul>
+                    </div>
+                    <hr>
                     <?php while($row = mysqli_fetch_assoc($result)) { ?>
                     <div class="divBox">
                         <div class="floatRight">
-                            <p><?php echo $row["time"]; ?></p> <br />
+                            <p><?php
+                                include_once("includes/timeAgoFunction.php");
+                                $timeago=get_timeago(strtotime($row['time']));
+                                echo $timeago;
+                            ?></p> 
+                            <br />
                         </div>
                         <p>Gamertag: <?php echo $row["user"]; ?></p> <br />
                         <p>Game: <?php echo $row["game"]; ?></p> <br />
                         <p>Description: <?php echo $row["description"]; ?></p> <br />
+                        <hr>
                     </div>
                     <?php } ?>
                 </div>
+            </div>
+        </div>
+        <div id="footerCon">
+            <div id="leftFooter">
+                <p class="footerText">&copy; Perplex 2016 - All rights reserved </p>
+            </div>
+            <div id="rightFooter">
+                <a href="#"><img src="images/youtube.png" class="socialLogo"></a>
+                <a href="https://twitter.com/Perplex_eSports"><img src="images/twitter.png" class="socialLogo"></a>
             </div>
         </div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

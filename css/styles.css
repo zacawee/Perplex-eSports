@@ -2,9 +2,14 @@
         font-size:3em;
       }
 #topContainer {
-  background-image:url("../images/blackops3.jpg");
+  background-color: whitesmoke;
   width:100%;
   background-size:cover;
+}
+#headerImage {
+    background-image:url("../images/blackops3.jpg");
+    width: 100%;
+    background-size: 100%;
 }
 #topRow {
   margin-top:100px;
@@ -44,13 +49,49 @@
 .divBox {
     height: auto;
     width: auto;
-    background-color: grey;
-    border-radius: 5px;
-    border: solid black 2px;
-    display: inline-block;
+/*    background-color: grey;*/
+/*    border-radius: 5px;*/
+/*    border-bottom: solid black 2px;*/
+/*    display: inline-block;*/
     vertical-align: top;
     margin-bottom: 5px;
 }
 .floatRight {
     float: right;
+}
+#bgColor {
+    background-color: grey;
+}
+.titleText{
+    color: black;
+}
+#footerCon {
+    width: 100%;
+    background-color: #13c7b9;
+    height: 50px;
+}
+.footerText {
+    padding-top: 10px;
+}
+#leftFooter {
+    width: 25%;
+    display: inline-block;
+    float: left;
+    vertical-align: top;
+    padding-left: 7.5%;
+}
+
+#rightFooter {
+    width: 40%;
+    display: inline-block;
+    float: right;
+    height: 10px;
+    text-align: right;
+    vertical-align: top;
+    padding-right: 10%;
+}
+.socialLogo {
+    width: 25px;
+    height: auto; 
+    padding-top: 12px;
 }
