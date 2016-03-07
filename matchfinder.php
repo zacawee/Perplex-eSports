@@ -28,20 +28,28 @@
             require_once("includes/connection.php"); 
             include_once("includes/template/nav.php");
         ?>
-        
-        <?php
-            $data = "SELECT * FROM matchFinder";
-            $result = mysqli_query($connection, $data);
-        ?>
-        
-        <h1>Match Finder</h1>
-        
-        <?php while($row = mysqli_fetch_assoc($result)) { ?>
-            <p><?php echo $row["id"]; ?></p>
-            <p><?php echo $row["user"]; ?></p>
-            <p><?php echo $row["game"]; ?></p> <br />
-        <?php } ?>
-        
+        <div class="content contentContainer">
+            <div class="row">      
+                <div class="col-md-6 col-md-offset-3 marginTop">
+                    <?php
+                        $data = "SELECT * FROM matchFinder";
+                        $result = mysqli_query($connection, $data);
+                     ?>
+            
+                    <h1>Match Finder</h1>
+                    <?php while($row = mysqli_fetch_assoc($result)) { ?>
+                    <div class="divBox">
+                        <div class="floatRight">
+                            <p><?php echo $row["time"]; ?></p> <br />
+                        </div>
+                        <p>Gamertag: <?php echo $row["user"]; ?></p> <br />
+                        <p>Game: <?php echo $row["game"]; ?></p> <br />
+                        <p>Description: <?php echo $row["description"]; ?></p> <br />
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

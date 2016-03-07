@@ -1,43 +1,56 @@
 .navbar-brand{
         font-size:3em;
       }
-      #topContainer {
-        background-image:url("../images/blackops3.jpg");
-        width:100%;
-        background-size:cover;
-      }
-      #topRow {
-        margin-top:100px;
-        text-align:center;
-      }
-      #topRow h1{
-        font-size:300%
-      }
-      .bold{
-        font-weight: bold;
-      }
-      .marginTop{
-        margin-top:30px;
-      }
-      .center{
-        text-align: center;
-      }
-      .title{
-        margin-top:100px;
-        font-size:300%;
-      }
-      .marginBottom{
-        margin-bottom:50px;
-      }
-      #footer{
-        background-color:#262625;
-        padding-top:70px;
-        width:100%;
-      }
-      .appstoreImage{
-        width:300px;
-        margin-top:50px;
-      }
-      .whiteText{
-        color:white;
-      }
+#topContainer {
+  background-image:url("../images/blackops3.jpg");
+  width:100%;
+  background-size:cover;
+}
+#topRow {
+  margin-top:100px;
+  text-align:center;
+}
+#topRow h1{
+  font-size:300%
+}
+.bold{
+  font-weight: bold;
+}
+.marginTop{
+  margin-top:30px;
+}
+.center{
+  text-align: center;
+}
+.title{
+  margin-top:100px;
+  font-size:300%;
+}
+.marginBottom{
+  margin-bottom:50px;
+}
+#footer{
+  background-color:#262625;
+  padding-top:70px;
+  width:100%;
+}
+.appstoreImage{
+  width:300px;
+  margin-top:50px;
+}
+.whiteText{
+  color:white;
+}
+.divBox {
+    height: auto;
+    width: auto;
+    background-color: grey;
+    border-radius: 5px;
+    border: solid black 2px;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 5px;
+}
+.floatRight {
+    float: right;
+}
