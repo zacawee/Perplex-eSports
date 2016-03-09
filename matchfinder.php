@@ -32,8 +32,16 @@
             <div class="row">      
                 <div class="col-md-8 col-md-offset-2 marginTop" id="bgColor">
                     <?php
-                        $data = "SELECT * FROM matchFinder ORDER BY ID DESC";
-                        $result = mysqli_query($connection, $data);
+                        if ($_GET[Game] != "") {
+                            //$data = "SELECT id, user, game, description FROM matchFinder WHERE game = ‘$_GET[Game]’ ORDER BY ID DESC";
+                            $data = "SELECT * FROM matchFinder WHERE game = '$_GET[Game]' ORDER BY ID DESC";
+                            $result = mysqli_query($connection, $data);
+                        } else {
+                            $data = "SELECT * FROM matchFinder ORDER BY ID DESC";
+                            $result = mysqli_query($connection, $data);
+                        }
+
+                       
                      ?>
             
                     <h1 class="titleText">Match Finder</h1>                   
@@ -66,8 +74,8 @@
                         </a>
                         <ul class="dropdown-menu">
                         <!-- dropdown menu links -->
-                            <li><a href="#">Black Ops III</a></li>
-                            <li><a href="#">CS:GO</a></li>
+                            <li><a href="http://176.32.230.9/perplex.gg/matchfinder.php?Game=BO3">Black Ops III</a></li>
+                            <li><a href="http://176.32.230.9/perplex.gg/matchfinder.php?Game=CSGO">CS:GO</a></li>
                         </ul>
                     </div>
                     <hr>
