@@ -87,6 +87,7 @@
               
                         <div class="form-group">                        
                             <form action="" method="post">
+                                <br />
                                 <input type="text" name="Gamertag" value="" class="form-control" placeholder="Gamertag:" id="gamertagWidth"> <br />
                                 <select name="Game" class="form-control" id="gamertagWidth">
                                     <option value="">Select Game:</option>

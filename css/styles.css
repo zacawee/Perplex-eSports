@@ -113,3 +113,6 @@
 #gamertagWidth {
     width: 30%;
 }
+.postDiv{
+    display: inline-block;
+}
