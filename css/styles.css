@@ -95,3 +95,21 @@
     height: auto; 
     padding-top: 12px;
 }
+
+.postForm {
+    max-height: 300px;
+    overflow: hidden;
+    width: 100%;
+    transition: all 1s;
+}
+
+.postHidden {
+    max-height: 0px;
+    overflow: hidden;
+    width: 100%;
+    transition: all 1s;
+}
+
+#gamertagWidth {
+    width: 30%;
+}

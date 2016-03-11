@@ -26,46 +26,17 @@
     <body data-navSetting="matchFinder">
         <?php 
             require_once("includes/connection.php"); 
+            require_once("includes/timeAgoFunction.php");
             include_once("includes/template/nav.php");
         ?>
         <div class="content contentContainer" id="topContainer">
             <div class="row">      
                 <div class="col-md-8 col-md-offset-2 marginTop" id="bgColor">
-                    <?php
-                        if ($_GET[Game] != "") {
-                            //$data = "SELECT id, user, game, description FROM matchFinder WHERE game = ‘$_GET[Game]’ ORDER BY ID DESC";
-                            $data = "SELECT * FROM matchFinder WHERE game = '$_GET[Game]' ORDER BY ID DESC";
-                            $result = mysqli_query($connection, $data);
-                        } else {
-                            $data = "SELECT * FROM matchFinder ORDER BY ID DESC";
-                            $result = mysqli_query($connection, $data);
-                        }
-
-                       
-                     ?>
+                    
             
                     <h1 class="titleText">Match Finder</h1>                   
-                    <button class="btn btn-success" data-toggle="modal" data-target="#myModal">Post Match</button>
-                    <div class="modal" id="myModal">
-                        <div class="modal-dialogue modal-sm">       
-                            <div class="modal-content">          
-                                <div class="modal-header">            
-                                    <button class="close" data-dismiss="modal">X</button>          
-                                    <h4 class="modal-title">Post a Match</h4>          
-                                </div>          
-                                <div class="modal-body">            
-                                    <p>Gamertag:</p> <br />
-                                    <p>Game:</p> <br />
-                                    <p>Descrition:</p> <br />
-                                </div>          
-                                <div class="modal-footer">            
-                                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <button class="btn btn-success">Post Match</button>
-                                </div>                    
-                            </div>        
-                        </div>      
-                    </div>               
-                    
+                    <button class="btn btn-success" id="postButton">Post Match</button>
+                
                     
                     <div class="btn-group">
                         <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">
@@ -77,13 +48,80 @@
                             <li><a href="http://176.32.230.9/perplex.gg/matchfinder.php?Game=BO3">Black Ops III</a></li>
                             <li><a href="http://176.32.230.9/perplex.gg/matchfinder.php?Game=CSGO">CS:GO</a></li>
                         </ul>
+                              <?php
+                        if (isset($_POST["submit"])) {
+                            $gamertag = ($_POST["Gamertag"]);
+                            $game = ($_POST["Game"]);
+                            $description = ($_POST["Description"]);
+                            $type = ($_POST["Type"]);
+                        } else {
+                            $gamertag = "";
+                            $game = "";
+                            $description = "";
+                            $type = "";
+                        }
+                    ?>
+                                                
+                                                <?php 
+                        if (isset($_POST["submit"])) {
+                            if (empty($gamertag)) {
+                                echo "Please enter a Gamertag: ";
+                            } else {
+                                if(isset($_POST["submit"])) {
+                                    $query = "INSERT INTO matchFinder (user, game, description, type) VALUES ('{$gamertag}', '{$game}', '{$description}', '{$type}')";
+                                    $result = mysqli_query($connection, $query); 
+                                    
+                                    if($result) {
+                                        $message =   "Congratulations we are not complete retards! <3"; 
+                                    } else {
+                                        $message = "We fucked up, sorry <3"; 
+                                    }
+                                    ?> <br> <h3><?php echo $message; ?></h3><?php
+                                }
+                            }
+                        }                mysqli_query("DELETE FROM matchFinder WHERE DATE('time') < DATE(NOW(INTERVAL 3 HOUR))");
+                                                ?>
                     </div>
+                    
+                    <div class="postHidden" id="formPost">
+              
+                        <div class="form-group">                        
+                            <form action="" method="post">
+                                <input type="text" name="Gamertag" value="" class="form-control" placeholder="Gamertag:" id="gamertagWidth"> <br />
+                                <select name="Game" class="form-control" id="gamertagWidth">
+                                    <option value="">Select Game:</option>
+                                    <option value="BO3">Black Ops III</option>
+                                    <option value="CSGO">CS:GO</option>
+                                </select> <br />
+                                <select name="Type" class="form-control" id="gamertagWidth">
+                                    <option value="">Please select type:</option>
+                                    <option value="scrim">Scrim</option>
+                                    <option value="8s">8's Lobby</option>
+                                </select> <br />
+                                <textarea type="text" name="Description" value="" class="form-control" placeholder="Message:" id="gamertagWidth"></textarea> <br />
+                                <button class="btn btn-success floatRight" type="submit" name="submit" value="Submit">Post Match</button>
+                            </form>  
+                        </div>
+                    </div>    
                     <hr>
+                    
+                    
+                    <?php
+                        if ($_GET[Game] != "") {
+                            //$data = "SELECT id, user, game, description FROM matchFinder WHERE game = ‘$_GET[Game]’ ORDER BY ID DESC";
+                            $data = "SELECT * FROM matchFinder WHERE game = '$_GET[Game]' AND time > DATE_SUB( NOW(), INTERVAL 3 HOUR) ORDER BY ID DESC";
+                            $result = mysqli_query($connection, $data);
+                        } else {
+                            $data = "SELECT * FROM matchFinder WHERE time > DATE_SUB( NOW(), INTERVAL 3 HOUR) ORDER BY ID DESC";
+                            $result = mysqli_query($connection, $data);
+                        }
+                     ?>
+                    
                     <?php while($row = mysqli_fetch_assoc($result)) { ?>
+                    
                     <div class="divBox">
                         <div class="floatRight">
                             <p><?php
-                                include_once("includes/timeAgoFunction.php");
                                 $timeago=get_timeago(strtotime($row['time']));
                                 echo $timeago;
                             ?></p> 
@@ -107,10 +145,10 @@
                 <a href="https://twitter.com/Perplex_eSports"><img src="images/twitter.png" class="socialLogo"></a>
             </div>
         </div>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>    
-    <script src="js/navSetting.js"></script>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>    
+        <script src="js/navSetting.js"></script>
+        <script src="js/postButton.js"></script>
     </body>    
 </html>
