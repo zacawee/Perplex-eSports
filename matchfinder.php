@@ -29,113 +29,135 @@
             require_once("includes/timeAgoFunction.php");
             include_once("includes/template/nav.php");
         ?>
-        <div class="content contentContainer" id="topContainer">
-            <div class="row">      
-                <div class="col-md-8 col-md-offset-2 marginTop" id="bgColor">
-                    
-            
-                    <h1 class="titleText">Match Finder</h1>                   
-                    <button class="btn btn-success" id="postButton">Post Match</button>
+    <div class="content contentContainer" id="topContainer">
+     <div class="row">   
+
+            <div class="col-md-8 col-md-offset-2 marginTop" id="bgColor">
                 
-                    
-                    <div class="btn-group">
-                        <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">
-                            Filter Game
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                        <!-- dropdown menu links -->
-                            <li><a href="http://176.32.230.9/perplex.gg/matchfinder.php?Game=BO3">Black Ops III</a></li>
-                            <li><a href="http://176.32.230.9/perplex.gg/matchfinder.php?Game=CSGO">CS:GO</a></li>
-                        </ul>
-                              <?php
-                        if (isset($_POST["submit"])) {
-                            $gamertag = ($_POST["Gamertag"]);
-                            $game = ($_POST["Game"]);
-                            $description = ($_POST["Description"]);
-                            $type = ($_POST["Type"]);
-                        } else {
-                            $gamertag = "";
-                            $game = "";
-                            $description = "";
-                            $type = "";
-                        }
-                    ?>
-                                                
-                                                <?php 
-                        if (isset($_POST["submit"])) {
-                            if (empty($gamertag)) {
-                                echo "Please enter a Gamertag: ";
-                            } else {
-                                if(isset($_POST["submit"])) {
-                                    $query = "INSERT INTO matchFinder (user, game, description, type) VALUES ('{$gamertag}', '{$game}', '{$description}', '{$type}')";
-                                    $result = mysqli_query($connection, $query); 
-                                    
-                                    if($result) {
-                                        $message =   "Congratulations we are not complete retards! <3"; 
-                                    } else {
-                                        $message = "We fucked up, sorry <3"; 
-                                    }
-                                    ?> <br> <h3><?php echo $message; ?></h3><?php
+        
+                <h1 class="titleText">Match Finder</h1>                   
+                <button class="btn btn-success" id="postButton">Post Match</button>
+                            
+                    <!-- dropdown menu links -->
+                        <form class="sameLine floatRight">
+                            <select class="form-control filterRegion">
+                                <option value="">Select Region:</option>
+                                <option value="na">NA</option>
+                                <option value="eu">EU</option>
+                                <option value="anz">ANZ</option>
+                            </select>
+                        </form>
+                        <form class="sameLine floatRight">
+                            <select class="form-control filterGame">
+                                <option value="">Select Game:</option>
+                                <option value="BO3">BO3</option>
+                                <option value="CSGO">CSGO</option>
+                                <option value="GTA">GTA</option>
+                            </select>
+                        </form>    
+                
+                <div class="btn-group">                    
+                          <?php
+                    if (isset($_POST["submit"])) {
+                        $gamertag = ($_POST["Gamertag"]);
+                        $game = ($_POST["Game"]);
+                        $description = ($_POST["Description"]);
+                        $type = ($_POST["Type"]);
+                        $region = ($_POST["Region"]);
+                        $console = ($_POST["Console"]);
+                    } else {
+                        $gamertag = "";
+                        $game = "";
+                        $description = "";
+                        $type = "";
+                        $region = "";
+                        $console = "";
+                    }
+                ?>
+                                            
+                                            <?php 
+                    if (isset($_POST["submit"])) {
+                        if (empty($gamertag)) {
+                            echo "Please enter a Gamertag: ";
+                        } else if (empty($game)) { 
+                            echo "Please select game type:";
+                        } else if (empty($type)){
+                            echo "Please select type:";
+                        } else if (empty($description)){
+                            echo "Please enter description:";
+                        } else if (empty($region)){
+                            echo "Please select region:";
+                        } else if (empty($console)){
+                            echo "Please select console";
+                        }   else {
+                            if(isset($_POST["submit"])) {
+                                $query = "INSERT INTO matchFinder (user, game, description, type, region, console) VALUES ('{$gamertag}', '{$game}', '{$description}', '{$type}', '{$region}', '{$console}')";
+                                $result = mysqli_query($connection, $query); 
+                                
+                                if($result) {
+                                    $message =   "Congratulations we are not complete retards! <3"; 
+                                } else {
+                                    $message = "We fucked up, sorry <3"; 
                                 }
+                                ?> <br> <h3><?php echo $message; ?></h3><?php
                             }
-                        }                mysqli_query("DELETE FROM matchFinder WHERE DATE('time') < DATE(NOW(INTERVAL 3 HOUR))");
-                                                ?>
-                    </div>
-                    
-                    <div class="postHidden" id="formPost">
-              
-                        <div class="form-group">                        
-                            <form action="" method="post">
-                                <br />
-                                <input type="text" name="Gamertag" value="" class="form-control" placeholder="Gamertag:" id="gamertagWidth"> <br />
-                                <select name="Game" class="form-control" id="gamertagWidth">
-                                    <option value="">Select Game:</option>
-                                    <option value="BO3">Black Ops III</option>
-                                    <option value="CSGO">CS:GO</option>
-                                </select> <br />
-                                <select name="Type" class="form-control" id="gamertagWidth">
-                                    <option value="">Please select type:</option>
-                                    <option value="scrim">Scrim</option>
-                                    <option value="8s">8's Lobby</option>
-                                </select> <br />
-                                <textarea type="text" name="Description" value="" class="form-control" placeholder="Message:" id="gamertagWidth"></textarea> <br />
-                                <button class="btn btn-success floatRight" type="submit" name="submit" value="Submit">Post Match</button>
-                            </form>  
-                        </div>
-                    </div>    
-                    <hr>
-                    
-                    
-                    <?php
-                        if ($_GET[Game] != "") {
-                            //$data = "SELECT id, user, game, description FROM matchFinder WHERE game = ‘$_GET[Game]’ ORDER BY ID DESC";
-                            $data = "SELECT * FROM matchFinder WHERE game = '$_GET[Game]' AND time > DATE_SUB( NOW(), INTERVAL 3 HOUR) ORDER BY ID DESC";
-                            $result = mysqli_query($connection, $data);
-                        } else {
-                            $data = "SELECT * FROM matchFinder WHERE time > DATE_SUB( NOW(), INTERVAL 3 HOUR) ORDER BY ID DESC";
-                            $result = mysqli_query($connection, $data);
                         }
-                     ?>
-                    
-                    <?php while($row = mysqli_fetch_assoc($result)) { ?>
-                    
-                    <div class="divBox">
-                        <div class="floatRight">
-                            <p><?php
-                                $timeago=get_timeago(strtotime($row['time']));
-                                echo $timeago;
-                            ?></p> 
-                            <br />
-                        </div>
-                        <p>Gamertag: <?php echo $row["user"]; ?></p> <br />
-                        <p>Game: <?php echo $row["game"]; ?></p> <br />
-                        <p>Description: <?php echo $row["description"]; ?></p> <br />
-                        <hr>
-                    </div>
-                    <?php } ?>
+                    }                mysqli_query("DELETE FROM matchFinder WHERE DATE('time') < DATE(NOW(INTERVAL 3 HOUR))");
+                                            ?>
                 </div>
-            </div>
+                
+                <div class="postHidden" id="formPost">
+                    <div class="row marginTop">
+          <div class="col-md-6">
+                    <div class="form-group">                        
+                        <form action="" method="post">
+                            <input type="text" name="Gamertag" value="" class="form-control" placeholder="Gamertag:" id="gamertagWidth"> <br />
+                            <select name="Game" class="form-control" id="sameLine">
+                                <option value="">Select Game:</option>
+                                <option value="BO3">Black Ops III</option>
+                                <option value="CSGO">CS:GO</option>
+                                <option value="GTA">GTA V</option>
+                            </select> 
+                            <select name="Type" class="form-control" id="sameLine">
+                                <option value="">Select Type:</option>
+                                <option value="scrim">Scrim</option>
+                                <option value="8s">8's Lobby</option>
+                                <option value="heist">Heists</option>
+                            </select> <br /> <br />                                 
+                            <select name="Region" class="form-control" id="sameLine">
+                                <option value="">Select Region:</option>
+                                <option value="eu">EU</option>
+                                <option value="na">NA</option>
+                                <option value="ANZ">ANZ</option>
+                            </select>
+                            <select name="Console" class="form-control" id="sameLine">
+                                <option value="">Select Console:</option>
+                                <option value="ps4">PS4</option>
+                                <option value="xb1">Xbox One</option>
+                                <option value="pc">PC</option>
+                            </select> 
+                            <br /> <br />
+                            <textarea type="text" name="Description" value="" class="form-control" placeholder="Message:" id="gamertagWidth"></textarea> <br />
+                            <button class="btn btn-success floatRight" type="submit" name="submit" value="Submit">Post Match</button>
+                        </form>  
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="alert alert-success">
+                            <h3>Tips for posting a match.</h3>
+                            <li><ul>Make sure you spell your Gamertag correctly.</ul></li>
+                            <li><ul>Be descriptive with what you are looking for.</ul></li>
+                            <li><ul>Your post will expire after 3 hours.</ul></li>
+                                           
+                        </div>
+                    </div>
+                </div>    
+                </div>
+                <hr>
+                
+            <div id="matchfinderLoader"></div>
+                </div>
+        </div>
         </div>
         <div id="footerCon">
             <div id="leftFooter">
@@ -151,5 +173,6 @@
         <script src="js/bootstrap.min.js"></script>    
         <script src="js/navSetting.js"></script>
         <script src="js/postButton.js"></script>
+        <script src="js/posts.js"></script>
     </body>    
 </html>

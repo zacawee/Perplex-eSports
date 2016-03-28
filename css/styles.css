@@ -111,8 +111,15 @@
 }
 
 #gamertagWidth {
-    width: 30%;
+    width: 99%;
 }
 .postDiv{
     display: inline-block;
+}
+#sameLine {
+    display: inline-block;
+    width: 30%;
+}.sameLine {
+    display: inline-block;
+    width: auto;
 }
