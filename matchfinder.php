@@ -54,6 +54,14 @@
                                 <option value="CSGO">CSGO</option>
                                 <option value="GTA">GTA</option>
                             </select>
+                        </form>
+                        <form class="sameLine floatRight">
+                            <select class="form-control filterConsole">
+                                <option value="">Select Console:</option>
+                                <option value="ps4">PS4</option>
+                                <option value="xb1">Xbox One</option>
+                                <option value="pc">PC</option>
+                            </select>
                         </form>    
                 
                 <div class="btn-group">                    

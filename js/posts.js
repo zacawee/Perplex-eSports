@@ -3,6 +3,7 @@ $(document).ready(function() {
     
     var filterOne = "";
     var filterTwo = "";
+    var filterThree = "";
     
     $(".filterRegion").change(function(){     
         filterOne = $(".filterRegion option:selected").val();
@@ -14,6 +15,10 @@ $(document).ready(function() {
         filter();
     });
     
+    $("filterConsole").change(function(){
+        filterThree = $(".filterRegion option:selected").val();
+        filter();
+    })
     function filter() {
         $("#matchfinderLoader").html("");
         $("#matchfinderLoader").load("http://176.32.230.9/perplex.gg/backendMatchfinder.php?Game="+ filterTwo +"&Region="+ filterOne);
