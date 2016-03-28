@@ -15,13 +15,16 @@ $(document).ready(function() {
         filter();
     });
     
-    $("filterConsole").change(function(){
-        filterThree = $(".filterRegion option:selected").val();
+    $(".filterConsole").change(function(){
+        filterThree = $(".filterConsole option:selected").val();
         filter();
-    })
+    });
+    
+    
+    
     function filter() {
         $("#matchfinderLoader").html("");
-        $("#matchfinderLoader").load("http://176.32.230.9/perplex.gg/backendMatchfinder.php?Game="+ filterTwo +"&Region="+ filterOne);
+        $("#matchfinderLoader").load("http://176.32.230.9/perplex.gg/backendMatchfinder.php?Game="+ filterTwo +"&Region="+ filterOne +"&Console="+ filterThree);
         
     };
 });

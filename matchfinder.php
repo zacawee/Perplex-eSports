@@ -41,7 +41,7 @@
                     <!-- dropdown menu links -->
                         <form class="sameLine floatRight">
                             <select class="form-control filterRegion">
-                                <option value="">Select Region:</option>
+                                <option value="">Filter Region:</option>
                                 <option value="na">NA</option>
                                 <option value="eu">EU</option>
                                 <option value="anz">ANZ</option>
@@ -49,7 +49,7 @@
                         </form>
                         <form class="sameLine floatRight">
                             <select class="form-control filterGame">
-                                <option value="">Select Game:</option>
+                                <option value="">Filter Game:</option>
                                 <option value="BO3">BO3</option>
                                 <option value="CSGO">CSGO</option>
                                 <option value="GTA">GTA</option>
@@ -57,7 +57,7 @@
                         </form>
                         <form class="sameLine floatRight">
                             <select class="form-control filterConsole">
-                                <option value="">Select Console:</option>
+                                <option value="">Filter Console:</option>
                                 <option value="ps4">PS4</option>
                                 <option value="xb1">Xbox One</option>
                                 <option value="pc">PC</option>
@@ -66,6 +66,12 @@
                 
                 <div class="btn-group">                    
                           <?php
+                    $gameValue = $_POST["Game"];
+                    $typeValue = $_POST["Type"];
+                    $regionValue = $_POST["Region"];
+                    $consoleValue = $_POST["Console"];
+                    
+                    
                     if (isset($_POST["submit"])) {
                         $gamertag = ($_POST["Gamertag"]);
                         $game = ($_POST["Game"]);
@@ -119,33 +125,33 @@
           <div class="col-md-6">
                     <div class="form-group">                        
                         <form action="" method="post">
-                            <input type="text" name="Gamertag" value="" class="form-control" placeholder="Gamertag:" id="gamertagWidth"> <br />
+                            <input type="text" name="Gamertag" value="<?php echo $_POST["Gamertag"]; ?>" class="form-control" placeholder="Gamertag:" id="gamertagWidth"> <br />
                             <select name="Game" class="form-control" id="sameLine">
                                 <option value="">Select Game:</option>
-                                <option value="BO3">Black Ops III</option>
-                                <option value="CSGO">CS:GO</option>
-                                <option value="GTA">GTA V</option>
+                                <option <?php if ($gameValue == "BO3") { echo "selected"; }?> value="BO3">Black Ops III</option>
+                                <option <?php if ($gameValue == "CSGO") { echo "selected"; }?> value="CSGO">CS:GO</option>
+                                <option <?php if ($gameValue == "GTA") { echo "selected"; }?> value="GTA">GTA V</option>
                             </select> 
                             <select name="Type" class="form-control" id="sameLine">
                                 <option value="">Select Type:</option>
-                                <option value="scrim">Scrim</option>
-                                <option value="8s">8's Lobby</option>
-                                <option value="heist">Heists</option>
+                                <option <?php if ($typeValue == "scrim") { echo "selected"; }?> value="scrim">Scrim</option>
+                                <option <?php if ($typeValue == "8s") { echo "selected"; }?> value="8s">8's Lobby</option>
+                                <option <?php if ($typeValue == "heist") { echo "selected"; }?> value="heist">Heists</option>
                             </select> <br /> <br />                                 
                             <select name="Region" class="form-control" id="sameLine">
                                 <option value="">Select Region:</option>
-                                <option value="eu">EU</option>
-                                <option value="na">NA</option>
-                                <option value="ANZ">ANZ</option>
+                                <option <?php if ($regionValue == "eu") { echo "selected"; }?> value="eu">EU</option>
+                                <option <?php if ($regionValue == "na") { echo "selected"; }?> value="na">NA</option>
+                                <option <?php if ($regionValue == "ANZ") { echo "selected"; }?> value="ANZ">ANZ</option>
                             </select>
                             <select name="Console" class="form-control" id="sameLine">
                                 <option value="">Select Console:</option>
-                                <option value="ps4">PS4</option>
-                                <option value="xb1">Xbox One</option>
-                                <option value="pc">PC</option>
+                                <option <?php if ($consoleValue == "ps4") { echo "selected"; }?> value="ps4">PS4</option>
+                                <option <?php if ($consoleValue == "xb1") { echo "selected"; }?> value="xb1">Xbox One</option>
+                                <option <?php if ($consoleValue == "pc") { echo "selected"; }?> value="pc">PC</option>
                             </select> 
                             <br /> <br />
-                            <textarea type="text" name="Description" value="" class="form-control" placeholder="Message:" id="gamertagWidth"></textarea> <br />
+                            <textarea type="text" name="Description" value="" class="form-control" placeholder="Message:" id="gamertagWidth"><?php echo $_POST["Description"]; ?></textarea> <br />
                             <button class="btn btn-success floatRight" type="submit" name="submit" value="Submit">Post Match</button>
                         </form>  
                     </div>

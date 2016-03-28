@@ -20,7 +20,10 @@
   </head>
     
   <body data-spy="scroll" data-target=".navbar-collapse">    
-    <div class="navbar navbar-default navbar-fixed-top">      
+      <div id="eminem">
+            <img id="headerImage" src="images/header.jpg">  
+      </div>
+    <div class="navbar navbar-inverse">      
       <div class="container">   
         <div class="navbar-header">          
           <a href="" class="navbar-brand">Perplex</a>        
@@ -59,9 +62,10 @@
     </div>    
   </div>
   <div id="home"></div>
-  <div class="container contentContainer" id="headerImage">
+  <div class="container contentContainer">
     
-    <div class="row">
+    
+    <!--<div class="row">
       
       <div class="col-md-6 col-md-offset-3" id="topRow">
         <div class="whiteText">    
@@ -80,10 +84,10 @@
             
       </form>
       </div>      
-    </div>         
+    </div>     -->    
   </div>
 
-  <div class="container contentContainer" id="about">
+  <div class="container contentContainer" id="about" style="background-color: white;">
   
     <div class="row" class="center">
       <h1 class="center title"> Why this App is Awesome</h1>
@@ -92,19 +96,19 @@
   
     <div class="row marginBottom">
       <div class="col-md-4">      
-        <h2><span class="glyphicon glyphicon-th-large"></span>Header</h2>
+        <h2><span class="glyphicon glyphicon-th-large"></span>Teams</h2>
         <p>A brief description of one of the best features of you app. Maybe a litle more text.
         A brief description of one of the best features of you app. Maybe a litle more text.</p>
         <button class="btn btn-success marginTop">Sign Up!</button>
       </div>
       <div class="col-md-4">      
-        <h2><span class="glyphicon glyphicon-trash"></span>Header</h2>
+        <h2><span class="glyphicon glyphicon-trash"></span>MatchFinder</h2>
         <p>A brief description of one of the best features of you app. Maybe a litle more text.
         A brief description of one of the best features of you app. Maybe a litle more text.</p>
         <button class="btn btn-success marginTop">Sign Up!</button>
       </div>
       <div class="col-md-4">      
-        <h2><span class="glyphicon glyphicon-user"></span>Header</h2>
+        <h2><span class="glyphicon glyphicon-user"></span>Shop</h2>
         <p>A brief description of one of the best features of you app. Maybe a litle more text.
         A brief description of one of the best features of you app. Maybe a litle more text.</p>
         <button class="btn btn-success marginTop">Sign Up!</button>
@@ -114,7 +118,7 @@
 
   <div class="container contentContainer" id="footer">
     <div class="row">
-      <h1 class="center title whiteText">Download the app!</h1>
+      <h1 class="center title whiteText">News Feed Like Optic</h1>
       <p class="lead center whiteText">Really, why should I download this app?</p>
       <p class="center"><img src="appstore.png" class="appstoreImage"</p>
     </div>
@@ -128,8 +132,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>    
-    <script>
-      $(".contentContainer").css("min-height",$(window).height())
-    </script>
+    <script src="js/parralax.js"></script>
   </body>
 </html>

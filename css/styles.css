@@ -6,11 +6,7 @@
   width:100%;
   background-size:cover;
 }
-#headerImage {
-    background-image:url("../images/blackops3.jpg");
-    width: 100%;
-    background-size: 100%;
-}
+
 #topRow {
   margin-top:100px;
   text-align:center;
@@ -28,7 +24,7 @@
   text-align: center;
 }
 .title{
-  margin-top:100px;
+  margin-top:30px;
   font-size:300%;
 }
 .marginBottom{
@@ -51,23 +47,23 @@
     width: auto;
 /*    background-color: grey;*/
 /*    border-radius: 5px;*/
-/*    border-bottom: solid black 2px;*/
+    border-bottom: solid black 1px;
 /*    display: inline-block;*/
     vertical-align: top;
-    margin-bottom: 5px;
+/*    margin-bottom: 5px;*/
     
 }
 .divBox:nth-child(odd) {
-    background-color: green;
+    background-color: #7F8C8D;
     
 }.divBox:nth-child(even) {
-    background-color: deeppink;
+    background-color: #9EADAE;
 }
 .floatRight {
     float: right;
 }
 #bgColor {
-    background-color: grey;
+    background-color: #34495E;
 }
 .titleText{
     color: black;
@@ -126,7 +122,24 @@
 #sameLine {
     display: inline-block;
     width: 30%;
+    margin-left: 5px;
 }.sameLine {
     display: inline-block;
     width: auto;
+    margin-left: 5px;
+}
+#eminem {
+    width: 100%;
+    overflow-y: hidden;
+}
+#headerImage {
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /*background-image:url("../images/header.jpg");
+    background-size: 100%;
+    background-repeat:no-repeat;
+    height: 800px;*/
 }
