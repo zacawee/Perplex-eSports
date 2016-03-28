@@ -36,7 +36,7 @@
                 
         
                 <h1 class="titleText">Match Finder</h1>                   
-                <button class="btn btn-success" id="postButton">Post Match</button>
+                <button class="btn btn-success" id="postButton">Post A Match</button>
                             
                     <!-- dropdown menu links -->
                         <form class="sameLine floatRight">

@@ -55,6 +55,13 @@
 /*    display: inline-block;*/
     vertical-align: top;
     margin-bottom: 5px;
+    
+}
+.divBox:nth-child(odd) {
+    background-color: green;
+    
+}.divBox:nth-child(even) {
+    background-color: deeppink;
 }
 .floatRight {
     float: right;
