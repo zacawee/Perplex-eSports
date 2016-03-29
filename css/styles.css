@@ -152,3 +152,14 @@
     width: 19%;
     margin-top: 0;
 }
+.facePic {
+    height: 200px;
+    width: 200px;
+    vertical-align: top;
+}
+.playerBio {
+    vertical-align: top;
+}
+.bioRight {
+    text-align: right;
+}
